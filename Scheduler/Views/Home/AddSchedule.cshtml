@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "AddSchedule";
+}
+
+<h2>AddSchedule</h2>
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+
+                        <div class="form-group row" id="">
+                            <div class="col-lg-6">
+                                <div class="">
+                                    <label for="FlightNumber" class="legend">Flight Number</label>
+                                    <div class="input-group" id='FlightNumber'>
+                                        <input type='text' placeholder="Flight Number" class="form-control " id="txtFlightNumber" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="DaysOfOperation" class="legend">Days Of Operation</label>
+                                    <div class="input-group" id='DaysOfOperation'>
+                                        <input type='text' placeholder="Days Of Operation" class="form-control " id="txtDaysOfOperation" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="PeriodOfOperation" class="legend">Period Of Operation</label>
+                                    <div class="input-group" id='PeriodOfOperation'>
+                                        <input type='text' placeholder="Period Of Operation" class="form-control " id="txtPeriodOfOperation" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="">
+                                    <label for="DepartureTime" class="legend">Departure Time</label>
+                                    <div class="input-group" id='DepartureTime'>
+                                        <input type='text' placeholder="Flight Number" class="form-control " id="txtDepartureTime" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="Original Station" class="legend">Original Station</label>
+                                    <div class="input-group" id='OriginalStation'>
+                                        <input type='text' placeholder="Original Station" class="form-control " id="txtOriginalStation" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="Destination Station" class="legend">Destination Station</label>
+                                    <div class="input-group" id='Destination Station'>
+                                        <input type='text' placeholder="Destination Station" class="form-control " id="txtDestinationStation" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="Aircraft" class="legend">Aircraft</label>
+                                    <div class="input-group" id='Aircraft'>
+                                        <input type='text' placeholder="Aircraft" class="form-control " id="txtAircraft" />
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-signal">
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>mq
+                    </div>
+                </div>
+            </div>         
+                <button type="button" class="btn btn-primary btnFont insert-ticket-confirm">Save</button>
+            </div>
+        </div>
+
+        
+
+
+}
+
+@section scripts
+{
+
+    <script type="text/javascript">
+    $(function () {
+
+    var GridTicket = {
+                Add: function (RequestObj, SuccessCallback, ErrorCallback) {
+
+                    $.ajax({
+                        url: '@Url.Action("AddTicket", "AddTicket")',
+                        type: 'POST',
+                        dataType: "JSON",
+                        data: RequestObj,
+                        success: SuccessCallback,
+                        error: ErrorCallback
+                    });
+                }
+        }
+
+        $('.insert-ticket-confirm').click(function () {
+
+        })
+
+    }
+    </script>
+ }
+

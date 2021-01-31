@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <h2>Some Schedule Filters</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div id="gridalerts"></div>
+            <div id="grid"></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <button id="btnAdd" type="button" class="btn btn-primary">Add Schedule</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="insertModalLabel">Add Schedule</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row" id="">
+                                    <div class="col-lg-6">
+                                        <div class="">
+                                            <label for="FlightNumber" class="legend">Flight Number</label>
+                                            <div class="input-group" id='FlightNumber'>
+                                                <input type='text' placeholder="Flight Number" class="form-control " id="txtFlightNumber" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="DaysOfOperation" class="legend">Days Of Operation</label>
+                                            <div class="input-group" id='DaysOfOperation'>
+                                                <input type='text' placeholder="Days Of Operation" class="form-control " id="txtDaysOfOperation" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="PeriodOfOperation" class="legend">Period Of Operation</label>
+                                            <div class="input-group" id='PeriodOfOperation'>
+                                                <input type='text' placeholder="Period Of Operation" class="form-control " id="txtPeriodOfOperation" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="">
+                                            <label for="DepartureTime" class="legend">Departure Time</label>
+                                            <div class="input-group" id='DepartureTime'>
+                                                <input type='text' placeholder="Flight Number" class="form-control " id="txtDepartureTime" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="Original Station" class="legend">Original Station</label>
+                                            <div class="input-group" id='OriginalStation'>
+                                                <input type='text' placeholder="Original Station" class="form-control " id="txtOriginalStation" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="Destination Station" class="legend">Destination Station</label>
+                                            <div class="input-group" id='Destination Station'>
+                                                <input type='text' placeholder="Destination Station" class="form-control " id="txtDestinationStation" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="Aircraft" class="legend">Aircraft</label>
+                                            <div class="input-group" id='Aircraft'>
+                                                <input type='text' placeholder="Aircraft" class="form-control " id="txtAircraft" />
+
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-signal">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="insertModalalerts"></div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btnFont cancel-pop" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary btnFont confirm-insert">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+}
+@section scripts
+{
+    <script type="text/javascript">
+
+
+
+
+        var FilterParams = {
+            term: $('#Term').val(),
+            GridFiler: function () {
+                return {
+                    term:$('#Term').val()
+                }
+            }
+        }
+        $('#btnAdd').click(function () {
+
+            $('#insertModal').modal('show');
+        });
+
+        var GridManager = {
+            Refresh: function () {
+                $("#grid").jsGrid("search",FormParams.GridFiler)
+            }
+        }
+
+        $("#grid").jsGrid({
+            width: "100%",
+            height: "auto",
+            autoload: true,
+            pageLoading: true,
+            editing: true,
+            filtering: false,
+            sorting: true,
+            paging: true,
+            pageSize: 30,
+            pageButtonCount: 3,
+            pageNextText: ">",
+            pageLastText: ">>",
+            pagePrevText: "<",
+            pageFirstText: "<<",
+            fields: [
+                { title: "Flight Number", name: "FlightNumber", type: "input", width: 50 },
+                { title: "Aircraft", name: "Aircraft", type: "input", width: 50 }
+            ],
+            controller: {
+                loadData: function (filter) {
+                    var d = $.Deferred();
+                    return $.ajax({
+                        url: '@Url.Action("GetScheduler", "Home")',
+                        type: 'GET',
+                        dataType: 'JSON',
+                        data: filter
+                    }).done(function (response) {
+
+                        d.resolve(response);
+                    })
+                }
+            }
+        });
+    </script>
+
+}
